@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	
+	<link rel="stylesheet" href="layui-v2.4.5/layui/css/layui.css">
+	<link rel="stylesheet" href="css/button.css">
+	<link rel="stylesheet" href="css/colpick.css">
+	<!--<link rel="stylesheet" href="css/normalize.css">-->
+	<!--<link rel="stylesheet" href="css/style.css">-->
+	<script type="text/javascript" src="js/libs/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+	
+	<div class="layui-tab">
+		<div class="layui-tab-content" style="height: 50px;">
+			<!--主页-->
+			<div id="option" class="layui-tab-item layui-show">
+				<div style="width: 80px;border-right:1px solid lightgray;display: inline-block;">
+					<button id="newone" class="button1"><img src="img/新建.png" style="width: 20px;" />新建</button>
+					<button id="cleanall" class="button1"><img src="img/清空.png" style="width: 20px;" />清空</button>
+				</div>
+				<div style="width: 80px;border-right:1px solid lightgray;display: inline-block;">
+					<button onclick="copy_select()" id="copy" class="button1"><img src="img/复制(1).png" style="width: 20px;" />复制</button>
+					<button onclick="paste_function()" id="paste" class="button1"><img src="img/粘贴.png" style="width: 20px;" />粘贴</button>
+				</div>
+				<div style="width: 80px;border-right:1px solid lightgray;display: inline-block;">
+					<!--<button id="clip" class="button1"><img  src="img/裁剪.png" style="width: 20px;" />裁剪</button>-->
+					<button id="clipchose" class="button1"><img  src="img/裁剪.png" style="width: 20px;" />裁剪</button>
+					<div id="clipdetail" style="background-color:#ededed;position: absolute;width: 60px;height:80px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button id="inclip" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>内裁剪</span></button>
+						<button id="outclip" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>外裁剪</span></button>
+					</div>
+					<button id="pitch" class="button1"><img src="img/选择.png" style="width: 20px;" />选择</button>
+					<div id="pitchdetail" style="background-color:#ededed;position: absolute;width: 60px;height:80px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button id="pitch" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>单选</span></button>
+						<button id="boxChoose" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>框选</span></button>
+					</div>
+				</div>
+				<div style="width: 80px;border-right:1px solid lightgray;display: inline-block;">
+					<!--<button id="fill" class="button1"><img src="img/填充.png" style="width: 20px;" />填充</button>-->
+					<button id="fillchose" class="button1"><img src="img/填充.png" style="width: 20px;" />填充</button>
+					<div id="filldetail" style="background-color:#ededed;position: absolute;width: 90px;height:180px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button id="fill1" class="button2" style="width:80px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>多边形填充</span></button>
+						<button id="fill2" class="button2" style="width:80px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>边填充</span></button>
+						<button id="fill3" class="button2" style="width:80px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>种子填充</span></button>
+						<button id="fill4" class="button2" style="width:80px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>图形填充</span></button>
+						<button id="fill5" class="button2" style="width:80px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>背景填充</span></button>
+					</div>
+					<button id="picker" class="button1"><img style="width: 20px;" src="img/颜色.png" />颜色</button>
+				</div>
+				<div style="width: 80px;border-right:1px solid lightgray;display: inline-block;">
+					<button  id="rubber" class="button1"><img src="img/橡皮擦.png" style="width: 20px;" />橡皮</button>
+					<button id="textname" class="button1"><img src="img/文字(1).png" style="width: 20px;" />文字</button>
+					<div id="textnametail" style="background-color:#ededed;position: absolute;width: 250px;height:80px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button id="name1" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>张兴盛</span></button>
+						<button id="name2" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>王海华</span></button>
+						<button id="name3" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>沈昕</span></button>
+						<button id="name4" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>蔡聪</span></button>
+						<button id="name5" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>刘子恒</span></button>
+						<button id="name6" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>潘筱萌</span></button>
+						<button id="name7" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>柯锋</span></button>
+						<button id="name8" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>章铭洋</span></button>
+					</div>
+				</div>
+				<div style="width: 80px;height：90px;border-right:1px solid lightgray;display: inline-block;">
+					<button id="linewidth" class="button1"><img style="width: 20px;" src="img/粗细.png" />粗细</button>
+					<div id="widthnumber" style="background-color:#ededed;position: absolute;width: 60px;height:45px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<!--<button id="inclip" class="button2" style="width:50px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>内裁剪</span></button>-->
+						<span>线宽：</span><input id="linenumber" value="1" style="width: 50px;"/>
+					</div>
+					<button id="linetype" class="button1"><img style="width: 20px;" src="img/线形.png" />线型</button>
+					<div id="linedetail" style="background-color:#ededed;position: absolute;width: 140px;height:220px;display: none;margin-left: 10px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button id="line1" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/uunn-直线.png" /><span>实线</span></button>
+						<button onclick="brush('dotted')" id="dotted" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/虚线.png" /><span>虚线</span></button>
+						<button onclick="brush('pointline')" id="pointline" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/虚线-横.png" /><span>点线</span></button>
+						<button onclick="brush('dianheng')" id="dianheng" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/虚线-横.png" /><span>点横线</span></button>
+						<button onclick="brush('doublepoint')" id="doublepoint" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/虚线-横.png" /><span>两点横线</span></button>
+						<button onclick="brush('longdotted')" id="longdotted" class="button2" style="width:120px;height:25px;margin-top: 10px;border-style:none;background-color:#ededed;"><img style="width: 50px;" src="img/虚线-横.png" /><span>长虚线</span></button>
+					</div>
+				</div>
+				<div style="width: 80px;height：90px;border-right:1px solid lightgray;display: inline-block;">
+					<!--<input type="radio" name="ruler1" value="男" title="男"><img  src="img/标尺.png" style="width: 20px;" />标尺
+      				<input type="radio" name="ruler2" value="女" title="女"><img src="img/网格.png" style="width: 20px;" />网格-->
+					<button id="ruler1" class="button1"><img  src="img/标尺.png" style="width: 20px;" />标尺</button>
+					<button id="ruler2"  class="button1"><img src="img/网格.png" style="width: 20px;" />网格</button>
+					</div>
+				<div style="width: 150px;height：90px;border-right:1px solid lightgray;display: inline-block;">
+					<a style="align-items: center;">对齐选择</a>
+					<br />
+					<br />
+					<!--<img src="img/上对齐.png" style="width: 20px;" />
+					<img src="img/下对齐.png" style="width: 20px;" />
+					<img src="img/左对齐.png" style="width: 20px;" />
+					<img src="img/右对齐.png" style="width: 20px;" />
+					<img src="img/水平居中.png" style="width: 20px;" />
+					<img src="img/纵向平分.png" style="width: 20px;" />-->
+					    <img class="alignchose" id="align1" src="img/上对齐.png" style="width: 20px;" />
+						<img class="alignchose" id="align2" src="img/下对齐.png" style="width: 20px;" />
+						<img class="alignchose" id="align3" src="img/左对齐.png" style="width: 20px;" />
+						<img class="alignchose" id="align4" src="img/右对齐.png" style="width: 20px;" />
+						<img class="alignchose" id="align5" src="img/水平居中.png" style="width: 20px;" />
+						<img class="alignchose" id="align6" src="img/纵向平分.png" style="width: 20px;" />
+				</div>
+
+				<div id="type" style="width: 350px;height：90px;display: inline-block;">
+					<a style="align-items: center;">图形绘制选择</a>
+					<br />
+					<br />
+					<img class="paint" style="width: 25px;border-style: solid;border-color:white;border-width: 2px;" src="img/点.png" />
+					<img id="straightLine" onclick="brush('straightLine')" style="width: 15px;border-style: solid;border-color:white;border-width: 2px;"
+					 class="paint" src="img/直线.png" />
+					 <div id="straightLinetail" style="background-color:#ededed;position: absolute;width: 100px;height:100px;display: none;margin-left: 30px;margin-top: 5px;border-radius:5px;border:0.5px solid #D1D1D1">
+						<button class="button2" style="width: 80px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>DDA</span></button>
+						<button class="button2" style="width: 80px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>中点画线</span></button>
+						<button class="button2" style="width: 80px;margin-top: 10px;border-style:none;background-color:#ededed;"><span>Besenham</span></button>
+					</div>
+					<img id="brokenline" onclick="brush('brokenline')" style="width: 25px;border-style: solid;border-color:white;border-width: 2px;"
+					 class="paint" src="img/折线.png" />
+					<img id="rightangle" onclick="brush('rightangle')" style="width: 15px;border-style: solid;border-color:white;border-width: 2px;"
+					 class="paint" src="img/直角.png" />
+					<img id="polygon" onclick="brush('polygon')" style="width: 25px;border-style: solid;border-color:white;border-width: 2px;"
+					 class="paint" src="img/多边形.png" />
+					<img id="circle" onclick="brush('circle')" class="paint" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/circle.png" />
+					<img id="Ellipse" onclick="brush('Ellipse')" class="paint" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/椭圆.png" />
+					<img id="positivearc" class="paint" onclick="brush('positivearc')" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/圆弧.png" />
+					<img id="elliparc" class="paint" onclick="brush('elliparc')" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/椭圆圆弧.png" />
+					<img id="curve" onclick="brush('curve')" class="paint" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/曲线.png" />
+					<img id="roundedrectangle" onclick="brush('roundedrectangle')" class="paint" style="width: 25px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/圆角矩形.png" />
+					<img id="rectangle" onclick="brush('rectangle')" class="paint" style="width: 20px;border-style: solid;border-color:white;border-width: 2px;"
+					 src="img/矩形.png" />
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<canvas  width="1080" height="540" id="canvas3" opacity="0" style="position: absolute;margin-left: 0px;z-index: -2;"></canvas>
+	<canvas  width="1080" height="540" id="canvas2" style="background-color: white;position: absolute;margin-left: 0px;z-index: -3;"></canvas>
+    <canvas  width="1080" height="540" id="canvas1" opacity="0" style="position: absolute;margin-left: 0px;z-index: -1;"></canvas>
+	<canvas width="1080" height="540" opacity="0" id="canvas"></canvas>
+	<!-- 鼠标位置跟踪 -->
+	<div id="position" style="position:absolute;left: 10px;top: 10px"></div>
+	<!-- 上传下载 -->
+	<div class="btn">
+			<button id="show"> <a style="color:white; text-decoration: none"  href="./show.html">作品展示</a> </button> <button id="download">保存到本地</button>	<button id="upload">上传到服务器</button>
+	</div>
+
+	<!-- 主要入口 -->
+	<script type="text/javascript" src="js/brush.js"></script>
+	<!-- 鼠标事件 -->
+	<script type="text/javascript" src="js/mouse/mouseDown.js"></script>
+	<script type="text/javascript" src="js/mouse/mouseMove.js"></script>
+	<script type="text/javascript" src="js/mouse/mouseUp.js"></script>
+	<script type="text/javascript" src="js/mouse/keyPress.js"></script>
+	<script type="text/javascript" src="js/ruler.js"></script>
+	<script type="text/javascript" src="js/flex.js"></script>
+	<script type="text/javascript" src="js/tapchoose.js"></script>
+	<script type="text/javascript" src="js/colpick.js"></script>
+	<script type="text/javascript" src="js/plugin.js"></script>
+	<script type="text/javascript" src="js/rubber.js"></script>
+	<script type="text/javascript" src="js/scaling_ratio.js"></script>
+	<script type="text/javascript" src="js/wenzi.js"></script>
+	<script type="text/javascript" src="js/alignbase.js"></script>
+	<!-- 所有图元对象 -->
+	<script type="text/javascript" src="js/items.js"></script>
+
+	<!-- 上传下载模块 -->
+	<script type="text/javascript" src="js/UpDownLoad.js" ></script>
+	<!-- 裁剪 -->
+	<script type="text/javascript" src="./js/clip.js"></script>
+	<!-- 选中 -->
+	<script type="text/javascript" src="js/pitch.js"></script>
+	<!-- 撤销 -->
+	<script type="text/javascript" src="js/revocation.js"></script>
+	<!-- 快捷键 -->
+	<script type="text/javascript" src="js/shortcutkey.js"></script>
+	<!-- 操作 -->
+	<script type="text/javascript" src="js/option.js"></script>
+	<!-- 重复上一步操作 -->
+	<script type="text/javascript" src="js/repeat.js"></script>
+	<!-- 复制操作 -->
+	<script type="text/javascript" src="js/copy.js"></script>
+	<!-- 粘贴操作 -->
+	<script type="text/javascript" src="js/paste.js"></script>
+
+	<!-- layui -->
+	<script type="text/javascript" src="layui-v2.4.5/layui/layui.js"></script>
+	<script>
+		//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+		layui.use(['form', 'element', 'laydate'], function () {
+			var form = layui.form
+				, layer = layui.layer
+				, element = layui.element;
+		});
+	</script>
+
+
+	<!-- 填充 -->
+	<script type="text/javascript" src="./js/fill.js"></script>
+	<script>
+		window.onload = function () {
+			$('#type img').click(function(){
+				option.name = '';
+			});
+
+			$('#option button').click(function(){
+				// type = null;
+			});
+			// $('#')
+		};
+
+	</script>
+	
+<script>
+	var choose_color = null;
+	$('#picker').colpick();
+	console.log("#"+allcolor.value);
+	$("#colorsubmit").click(function(event){
+	console.log("#"+allcolor.value);
+	choose_color = "#"+allcolor.value;
+	console.log(choose_color);
+});
+</script>
+</body>
+
+</html>
